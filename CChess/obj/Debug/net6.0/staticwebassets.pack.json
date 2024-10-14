@@ -1,0 +1,417 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\CChess.bundle.scp.css",
+      "PackagePath": "staticwebassets\\CChess.bundle.scp.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\bancotuong.jpg",
+      "PackagePath": "staticwebassets\\Images\\bancotuong.jpg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\chutuongden.svg",
+      "PackagePath": "staticwebassets\\Images\\chutuongden.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\chutuongdo.svg",
+      "PackagePath": "staticwebassets\\Images\\chutuongdo.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\maden1.svg",
+      "PackagePath": "staticwebassets\\Images\\maden1.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\maden2.svg",
+      "PackagePath": "staticwebassets\\Images\\maden2.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\mado1.svg",
+      "PackagePath": "staticwebassets\\Images\\mado1.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\mado2.svg",
+      "PackagePath": "staticwebassets\\Images\\mado2.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\nhuquynh11.jpg",
+      "PackagePath": "staticwebassets\\Images\\nhuquynh11.jpg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\nq2021v1.jpg",
+      "PackagePath": "staticwebassets\\Images\\nq2021v1.jpg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\phaoden1.svg",
+      "PackagePath": "staticwebassets\\Images\\phaoden1.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\phaoden2.svg",
+      "PackagePath": "staticwebassets\\Images\\phaoden2.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\phaodo1.svg",
+      "PackagePath": "staticwebassets\\Images\\phaodo1.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\phaodo2.svg",
+      "PackagePath": "staticwebassets\\Images\\phaodo2.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\quanco.jpg",
+      "PackagePath": "staticwebassets\\Images\\quanco.jpg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\siden1.svg",
+      "PackagePath": "staticwebassets\\Images\\siden1.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\siden2.svg",
+      "PackagePath": "staticwebassets\\Images\\siden2.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\sido1.svg",
+      "PackagePath": "staticwebassets\\Images\\sido1.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\sido2.svg",
+      "PackagePath": "staticwebassets\\Images\\sido2.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\totden1.svg",
+      "PackagePath": "staticwebassets\\Images\\totden1.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\totden2.svg",
+      "PackagePath": "staticwebassets\\Images\\totden2.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\totden3.svg",
+      "PackagePath": "staticwebassets\\Images\\totden3.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\totden4.svg",
+      "PackagePath": "staticwebassets\\Images\\totden4.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\totden5.svg",
+      "PackagePath": "staticwebassets\\Images\\totden5.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\totdo1.svg",
+      "PackagePath": "staticwebassets\\Images\\totdo1.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\totdo2.svg",
+      "PackagePath": "staticwebassets\\Images\\totdo2.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\totdo3.svg",
+      "PackagePath": "staticwebassets\\Images\\totdo3.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\totdo4.svg",
+      "PackagePath": "staticwebassets\\Images\\totdo4.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\totdo5.svg",
+      "PackagePath": "staticwebassets\\Images\\totdo5.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\tuongden.svg",
+      "PackagePath": "staticwebassets\\Images\\tuongden.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\tuongden1.svg",
+      "PackagePath": "staticwebassets\\Images\\tuongden1.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\tuongden2.svg",
+      "PackagePath": "staticwebassets\\Images\\tuongden2.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\tuongdo.svg",
+      "PackagePath": "staticwebassets\\Images\\tuongdo.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\tuongdo1.svg",
+      "PackagePath": "staticwebassets\\Images\\tuongdo1.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\tuongdo2.svg",
+      "PackagePath": "staticwebassets\\Images\\tuongdo2.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\xeden1.svg",
+      "PackagePath": "staticwebassets\\Images\\xeden1.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\xeden2.svg",
+      "PackagePath": "staticwebassets\\Images\\xeden2.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\xedo1.svg",
+      "PackagePath": "staticwebassets\\Images\\xedo1.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\xedo2.svg",
+      "PackagePath": "staticwebassets\\Images\\xedo2.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.CChess.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.CChess.props",
+      "PackagePath": "build\\CChess.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.CChess.props",
+      "PackagePath": "buildMultiTargeting\\CChess.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.CChess.props",
+      "PackagePath": "buildTransitive\\CChess.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

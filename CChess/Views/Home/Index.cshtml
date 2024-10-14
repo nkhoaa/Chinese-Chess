@@ -1,0 +1,73 @@
+﻿<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+<style>
+    .chessboard {
+        width: 850px;
+        height: 850px;
+        background-image: url("/Images/bancotuong.jpg");
+        position: absolute;
+    }
+
+    .chessnode {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+    }
+
+    .chessimgnode {
+        width: 50px;
+        height: 50px;
+    }
+</style>
+
+<div id="app" style="min-height:800px">
+    <div class="chessboard">
+        <div v-for="item in chessNode" class="chessnode"
+             v-on:dragstart="dragStart"
+             v-on:dragend="dragEnd"
+             :id="item.id" v-bind:style="{ display: item.visible, top: item.top + 'px', left: item.left + 'px' }">
+            <img :src="'/' + item.src" class="chessimgnode" />
+        </div>
+    </div>
+</div>
+
+<script>
+    var matrix = [];
+    var app = new Vue({
+        el: '#app',
+        data: {
+            chessNode: [],
+            top: 0,
+            left: 0
+
+        },
+        methods: {
+            getChessNode() {
+                axios({
+                    url: '/api/chess/loadChessBoard',
+                    method: 'GET',
+                    responseType: 'Json',
+
+                }).then((response) => {
+                    this.chessNode = response.data.chessNode;
+                    matrix = response.data.maxtrix;
+
+                });
+            },
+            dragStart(event) {
+                this.top = event.clientY;
+                this.left = event.clientX;
+            },
+            dragEnd(event) {
+                var id = event.currentTarget.id;
+                var moveX = event.clientX - this.left;
+                var moveY = event.clientY - this.top;
+                moveX = moveX + event.currentTarget.offsetLeft;
+                moveY = moveY + event.currentTarget.offsetTop;
+            }
+        },
+        mounted: function () {
+            this.getChessNode();
+        }
+    });
+</script>
