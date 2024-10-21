@@ -58,12 +58,84 @@
                 this.top = event.clientY;
                 this.left = event.clientX;
             },
+            getIndexByTopLeft(top, left, matrix) {
+                var obj = {};
+                for (var i = 0; i < matrix.length; i++) {
+                    for (var j = 0; j < matrix[i].length; j++) {
+                        if (Math.abs(matrix[i][j].top - top) < 20 && Math.abs(matrix[i][j].left - left) < 20) {
+                            obj.i = i;
+                            onj.j = j;
+                            onj.id = matrix[i][j].id;
+                            return obj;
+                        }
+                    }
+                }
+                return null;
+            },
             dragEnd(event) {
                 var id = event.currentTarget.id;
                 var moveX = event.clientX - this.left;
                 var moveY = event.clientY - this.top;
                 moveX = moveX + event.currentTarget.offsetLeft;
                 moveY = moveY + event.currentTarget.offsetTop;
+
+                var nodeStart = this.getIndexByTopLeft(event.currentTarget.offsetTop, event.currentTarget.offsetLeft, matrix);
+                var nodeEnd = this.getIndexByTopLeft(moveY, moveX, maxtrix);
+
+                if (nodeEnd == null) {
+                    return;
+                }
+
+                var objRemove = null;
+
+                // Horse movement
+                if (id.indexOf('ma') >= 0) {
+                    var gapI = Math.abs(nodeEnd.i - nodeStart.i);
+                    var gapJ = Math.abs(nodeEnd.j - nodeStart.j);
+                    if (!((gapI == 1 && gapJ == 2) || (gapJ == 1 && gapI == 2))) {
+                        return;
+                    }
+                    if ((gapI == 1 && gapJ == 2) && (nodeEnd.j > nodeStart.j)) {
+                        if (matrix[nodeStart.i][nodeStart.j + 1].id != "") {
+                            return;
+                        }                   
+                    }
+                    if ((gapI == 1 && gapJ == 2) && (nodeEnd.j < nodeStart.j)) {
+                        if (matrix[nodeStart.i][nodeStart.j - 1].id != "") {
+                            return;
+                        }
+                    }
+                    if ((gapI == 2 && gapJ == 1) && (nodeEnd.i > nodeStart.i)) {
+                        if (matrix[nodeStart.i + 1][nodeStart.j].id != "") {
+                            return;
+                        }
+                    }
+                    if ((gapI == 2 && gapJ == 1) && (nodeEnd.i < nodeStart.i)) {
+                        if (matrix[nodeStart.i - 1][nodeStart.j].id != "") {
+                            return;
+                        }
+                    }
+                    if (nodeEnd.id != "" && nodeEnd.id.indexOf('do') > 0) { 
+                        return;
+                    }
+                    else {
+                        if (nodeEnd.id != "") { // black
+                            objRemove = { id: nodeEnd.id };
+                        }
+                    }
+                }
+                // End Horse movement
+
+                // var para = [( id: id, fromi: nodeStart.i, fromj: nodeStart.j, toi: nodeEnd.i, app nodeEnd.j )];
+                // if (objRemove != null) {
+                //     para.push(objRemove);
+                // }
+                // axios({
+                //     url: '/api/chess/move-check-node',
+                //     method: 'Post',
+                //     responseType: 'Json',
+                //     data: para,
+                // }).then((response) => );
             }
         },
         mounted: function () {
