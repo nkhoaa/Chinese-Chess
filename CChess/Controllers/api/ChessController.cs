@@ -1,6 +1,8 @@
 ﻿using CChess.Models;
+using CChess.Hubs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System.Text.Json;
 
 namespace CChess.Controllers.api
@@ -10,11 +12,14 @@ namespace CChess.Controllers.api
     public class ChessController : ControllerBase
     {
         private IWebHostEnvironment webHostEnvironment;
+        private IHubContext<ChatHub> hubContext;
 
-        public ChessController(IWebHostEnvironment webHostEnvironment)
+        public ChessController(IWebHostEnvironment webHostEnvironment, IHubContext<ChatHub> hubContext)
         {
             this.webHostEnvironment = webHostEnvironment;
+            this.hubContext = hubContext;
         }
+
         [HttpGet]
         [Route("loadChessBoard")]
         public IActionResult getChessBoard()
@@ -47,6 +52,16 @@ namespace CChess.Controllers.api
 
 
             return Ok(new { status = true, message = "", maxtrix = maxtrix, chessNode = chessNode });
+        }
+
+        [HttpPost]
+        [Route("move-check-node")]
+        public IActionResult chessMove(List<MoveChess> movenodeList, string roomId)
+        {
+            //hubContext.Clients.All.SendAsync("ReceiveChessMove", JsonSerializer.Serialize(movenodeList));
+
+            hubContext.Clients.Groups(roomId).SendAsync("ReceiveChessMove", JsonSerializer.Serialize(movenodeList));
+            return Ok(new { status = true, message = "" });
         }
     }
 }
