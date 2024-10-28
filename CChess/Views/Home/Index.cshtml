@@ -88,46 +88,255 @@
 
                 var objRemove = null;
 
+                const isRed = id.includes('do');
+
                 // horse movement
                 if (id.indexOf('ma') >= 0) {
                     var gapI = Math.abs(nodeEnd.i - nodeStart.i);
                     var gapJ = Math.abs(nodeEnd.j - nodeStart.j);
-                    if (!((gapI == 1 && gapJ == 2) || (gapJ == 1 && gapI == 2))) {
+
+                    // Validate "L" shaped movement
+                    if (!((gapI === 1 && gapJ === 2) || (gapJ === 1 && gapI === 2))) {
                         return;
                     }
-                    if ((gapI == 1 && gapJ == 2) && (nodeEnd.j > nodeStart.j)) {
-                        if (matrix[nodeStart.i][nodeStart.j + 1].id != "") {
-                            return;
+
+                    // Check for "leg blocking" in the L shape movement
+                    if ((gapI === 1 && gapJ === 2) && nodeEnd.j > nodeStart.j) {
+                        if (matrix[nodeStart.i][nodeStart.j + 1].id !== "") {
+                            return; // Blocked move
                         }
                     }
-                    if ((gapI == 1 && gapJ == 2) && (nodeEnd.j < nodeStart.j)) {
-                        if (matrix[nodeStart.i][nodeStart.j - 1].id != "") {
-                            return;
+                    if ((gapI === 1 && gapJ === 2) && nodeEnd.j < nodeStart.j) {
+                        if (matrix[nodeStart.i][nodeStart.j - 1].id !== "") {
+                            return; // Blocked move
+                        }
+                    }
+                    if ((gapI === 2 && gapJ === 1) && nodeEnd.i > nodeStart.i) {
+                        if (matrix[nodeStart.i + 1][nodeStart.j].id !== "") {
+                            return; // Blocked move
+                        }
+                    }
+                    if ((gapI === 2 && gapJ === 1) && nodeEnd.i < nodeStart.i) {
+                        if (matrix[nodeStart.i - 1][nodeStart.j].id !== "") {
+                            return; // Blocked move
                         }
                     }
 
-                    if ((gapI == 2 && gapJ == 1) && (nodeEnd.i > nodeStart.i)) {
-                        if (matrix[nodeStart.i + 1][nodeStart.j].id != "") {
-                            return;
+                    // Prevent capturing allied pieces
+                    if (nodeEnd.id !== "") {
+                        if ((isRed && nodeEnd.id.includes('do')) || (!isRed && nodeEnd.id.includes('den'))) {
+                            return; // Block move if the piece at nodeEnd is an ally
+                        } else {
+                            objRemove = { id: nodeEnd.id }; // Capture opponent piece
                         }
-                    }
-                    if ((gapI == 2 && gapJ == 1) && (nodeEnd.i < nodeStart.i)) {
-                        if (matrix[nodeStart.i - 1][nodeStart.j].id != "") {
-                            return;
-                        }
-                    }
-                    if (nodeEnd.id != "" && nodeEnd.id.indexOf('do') > 0) {
-                        return;
-                    }
-                    else {
-                        if (nodeEnd.id != "") // for black piece
-                        {
-                            objRemove = { id: nodeEnd.id };
-                        }
-
                     }
                 }
                 // end horse movement
+
+                // rook movement
+                if (id.indexOf('xe') >= 0) {
+                    if (nodeStart.i === nodeEnd.i) { // Horizontal movement
+                        let minJ = Math.min(nodeStart.j, nodeEnd.j) + 1;
+                        let maxJ = Math.max(nodeStart.j, nodeEnd.j) - 1;
+
+                        // Check for obstacles between start and end positions
+                        for (let j = minJ; j <= maxJ; j++) {
+                            if (matrix[nodeStart.i][j].id !== "") {
+                                return; // Invalid move if there's a piece in the path
+                            }
+                        }
+                    } else if (nodeStart.j === nodeEnd.j) { // Vertical movement
+                        let minI = Math.min(nodeStart.i, nodeEnd.i) + 1;
+                        let maxI = Math.max(nodeStart.i, nodeEnd.i) - 1;
+
+                        // Check for obstacles between start and end positions
+                        for (let i = minI; i <= maxI; i++) {
+                            if (matrix[i][nodeStart.j].id !== "") {
+                                return; // Invalid move if there's a piece in the path
+                            }
+                        }
+                    } else {
+                        return; // Invalid move if not horizontal or vertical
+                    }
+
+                    // Prevent capturing allied pieces
+                    if (nodeEnd.id && ((isRed && nodeEnd.id.includes('do')) || (!isRed && nodeEnd.id.includes('den')))) {
+                        return;
+                    } else if (nodeEnd.id !== "") { // Capture opponent piece
+                        objRemove = { id: nodeEnd.id };
+                    }
+                }
+                // end rook movement
+
+                // cannon movement
+                if (id.indexOf('phao') >= 0) {
+                    let isHorizontal = nodeStart.i === nodeEnd.i;
+                    let isVertical = nodeStart.j === nodeEnd.j;
+                    let hasScreen = false;
+
+                    // If it's a horizontal move
+                    if (isHorizontal) {
+                        let minJ = Math.min(nodeStart.j, nodeEnd.j) + 1;
+                        let maxJ = Math.max(nodeStart.j, nodeEnd.j) - 1;
+
+                        // Check each position between start and end
+                        for (let j = minJ; j <= maxJ; j++) {
+                            if (matrix[nodeStart.i][j].id !== "") {
+                                if (!hasScreen) {
+                                    hasScreen = true; // First piece acts as screen
+                                } else {
+                                    return; // More than one piece blocks the path
+                                }
+                            }
+                        }
+                    }
+                    // If it's a vertical move
+                    else if (isVertical) {
+                        let minI = Math.min(nodeStart.i, nodeEnd.i) + 1;
+                        let maxI = Math.max(nodeStart.i, nodeEnd.i) - 1;
+
+                        // Check each position between start and end
+                        for (let i = minI; i <= maxI; i++) {
+                            if (matrix[i][nodeStart.j].id !== "") {
+                                if (!hasScreen) {
+                                    hasScreen = true; // First piece acts as screen
+                                } else {
+                                    return; // More than one piece blocks the path
+                                }
+                            }
+                        }
+                    }
+                    // Invalid move if not horizontal or vertical
+                    else {
+                        return;
+                    }
+
+                    // Regular movement: if there's no screen and the end node is empty, move freely like a rook
+                    if (nodeEnd.id === "" && !hasScreen) {
+                        // Allow free movement without capturing
+                        // No return needed here as the movement is valid
+                    }
+                    // Capture movement: if there’s a screen and the target node has an opponent piece
+                    else if (nodeEnd.id !== "" && hasScreen) {
+                        // Prevent capturing allied pieces
+                        if ((isRed && nodeEnd.id.includes('do')) || (!isRed && nodeEnd.id.includes('den'))) {
+                            return; // Invalid move if capturing an ally
+                        }
+                        objRemove = { id: nodeEnd.id }; // Capture opponent piece
+                    } else {
+                        return; // Invalid move if there's no screen but an opponent piece
+                    }
+                }
+                // end canon movement
+
+                // bishop movement
+                if (id.indexOf('tuong') >= 0) {
+                    const deltaI = Math.abs(nodeEnd.i - nodeStart.i);
+                    const deltaJ = Math.abs(nodeEnd.j - nodeStart.j);
+
+                    // Check if the move is exactly two spaces diagonally
+                    if (deltaI === 2 && deltaJ === 2) {
+                        // Check the square in between to ensure it's empty
+                        const midI = (nodeStart.i + nodeEnd.i) / 2;
+                        const midJ = (nodeStart.j + nodeEnd.j) / 2;
+
+                        // Check if the bishop is crossing the river
+                        const isCrossingRiver = (nodeStart.i < 5 && nodeEnd.i > 4) || (nodeStart.i > 4 && nodeEnd.i < 5);
+                        if (isCrossingRiver) {
+                            return; // Invalid move if crossing the river
+                        }
+
+                        // Ensure the square in between is empty
+                        if (matrix[midI][midJ].id === "") {
+                            // Prevent capturing allied pieces
+                            if ((isRed && nodeEnd.id.includes('do')) || (!isRed && nodeEnd.id.includes('den'))) {
+                                return; // Invalid move if capturing an allied piece
+                            }
+
+                            // Capture opponent piece or move to an empty square
+                            if (nodeEnd.id !== "") {
+                                objRemove = { id: nodeEnd.id }; // Capture opponent piece
+                            }
+                        } else {
+                            return; // Invalid move if the space in between is occupied
+                        }
+                    } else {
+                        return; // Invalid move if not moving exactly two spaces diagonally
+                    }
+                }
+                // end bishop movement
+
+                // guard movement
+                if (id.indexOf('si') >= 0) { 
+                    const deltaI = Math.abs(nodeEnd.i - nodeStart.i);
+                    const deltaJ = Math.abs(nodeEnd.j - nodeStart.j);
+
+                    // Check if the move is exactly one space diagonally
+                    if (deltaI === 1 && deltaJ === 1) {
+                        // Check if the destination position is within the respective palace
+                        const isInRedPalace = (nodeEnd.i >= 0 && nodeEnd.i <= 2) && (nodeEnd.j >= 3 && nodeEnd.j <= 5);
+                        const isInBlackPalace = (nodeEnd.i >= 7 && nodeEnd.i <= 9) && (nodeEnd.j >= 3 && nodeEnd.j <= 5);
+
+                        // Allow movement only if it's within the respective palace
+                        if ((isRed && !isInRedPalace) || (!isRed && !isInBlackPalace)) {
+                            return; // Prevent movement outside the palace
+                        }
+
+                        // Prevent capturing allied pieces
+                        if ((isRed && nodeEnd.id.includes('do')) || (!isRed && nodeEnd.id.includes('den'))) {
+                            return; // Invalid move if capturing an allied piece
+                        }
+
+                        // Capture opponent piece or move to an empty square
+                        if (nodeEnd.id !== "") {
+                            objRemove = { id: nodeEnd.id }; // Capture opponent piece
+                        }
+                    } else {
+                        return; // Invalid move if not moving exactly one space diagonally
+                    }
+                }
+                // end guard movement
+
+                // pawn movement
+                if (id.indexOf('tot') >= 0) {                    
+                    const hasCrossedRiver = (isRed && nodeStart.i >= 5) || (!isRed && nodeStart.i < 5);
+
+                    // Determine the forward direction
+                    const forwardDirection = isRed ? 1 : -1;
+                    const deltaI = nodeEnd.i - nodeStart.i;
+                    const deltaJ = Math.abs(nodeEnd.j - nodeStart.j);
+
+                    // Check movement rules
+                    if (!hasCrossedRiver) {
+                        // Before crossing the river, only allow forward movement
+                        if (deltaI === forwardDirection && deltaJ === 0) {
+                            // Valid move forward
+                            if (nodeEnd.id !== "") {
+                                // Prevent capturing allied pieces
+                                if ((isRed && nodeEnd.id.includes('do')) || (!isRed && nodeEnd.id.includes('den'))) return;
+                                objRemove = { id: nodeEnd.id }; // Capture opponent piece
+                            }
+                        } else {
+                            return; // Invalid move if not moving forward before crossing the river
+                        }
+                    } else {
+                        // After crossing the river, allow forward or sideways movement
+                        if ((deltaI === forwardDirection && deltaJ === 0) || (deltaI === 0 && deltaJ === 1)) {
+                            // Valid move forward or sideways
+                            if (nodeEnd.id !== "") {
+                                // Prevent capturing allied pieces
+                                if ((isRed && nodeEnd.id.includes('do')) || (!isRed && nodeEnd.id.includes('den'))) return;
+                                objRemove = { id: nodeEnd.id }; // Capture opponent piece
+                            }
+                        } else {
+                            return; // Invalid move if not moving forward or sideways after crossing the river
+                        }
+                    }
+                }
+                // end pawn movement
+
+                // general movement
+                // end general movement
 
                 let params = new URL(document.location.toString()).searchParams;
                 let roomId = params.get("roomId");
