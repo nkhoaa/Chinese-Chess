@@ -9,14 +9,6 @@
       "PackagePath": "staticwebassets\\Images\\bancotuong.jpg"
     },
     {
-      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\chutuongden.svg",
-      "PackagePath": "staticwebassets\\Images\\chutuongden.svg"
-    },
-    {
-      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\chutuongdo.svg",
-      "PackagePath": "staticwebassets\\Images\\chutuongdo.svg"
-    },
-    {
       "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\maden1.svg",
       "PackagePath": "staticwebassets\\Images\\maden1.svg"
     },
@@ -139,6 +131,14 @@
     {
       "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\tuongdo2.svg",
       "PackagePath": "staticwebassets\\Images\\tuongdo2.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\vuaden.svg",
+      "PackagePath": "staticwebassets\\Images\\vuaden.svg"
+    },
+    {
+      "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\vuado.svg",
+      "PackagePath": "staticwebassets\\Images\\vuado.svg"
     },
     {
       "Id": "E:\\Visual studio project\\CChess\\CChess\\wwwroot\\Images\\xeden1.svg",

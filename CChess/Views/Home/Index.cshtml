@@ -336,6 +336,55 @@
                 // end pawn movement
 
                 // general movement
+                // Check for Red General 
+                if (id === 'vuado') {
+                    const deltaI = Math.abs(nodeEnd.i - nodeStart.i);
+                    const deltaJ = Math.abs(nodeEnd.j - nodeStart.j);
+
+                    // General can only move one space horizontally or vertically
+                    if ((deltaI === 1 && deltaJ === 0) || (deltaI === 0 && deltaJ === 1)) {
+                        // Check if the move is within the red palace
+                        const isInRedPalace = (nodeEnd.i >= 0 && nodeEnd.i <= 2) && (nodeEnd.j >= 3 && nodeEnd.j <= 5);
+
+                        if (!isInRedPalace) {
+                            return; // Prevent movement outside the palace
+                        }
+
+                        // Check for capturing opponent's piece
+                        if (nodeEnd.id && nodeEnd.id.includes('do')) {
+                            return; // Prevent capturing allied pieces
+                        } else if (nodeEnd.id !== "") {
+                            objRemove = { id: nodeEnd.id }; // Capture opponent piece
+                        }
+                    } else {
+                        return; // Invalid move if not moving one space in a straight line
+                    }
+                }
+
+                // Check for Black General 
+                else if (id === 'vuaden') {
+                    const deltaI = Math.abs(nodeEnd.i - nodeStart.i);
+                    const deltaJ = Math.abs(nodeEnd.j - nodeStart.j);
+
+                    // General can only move one space horizontally or vertically
+                    if ((deltaI === 1 && deltaJ === 0) || (deltaI === 0 && deltaJ === 1)) {
+                        // Check if the move is within the black palace
+                        const isInBlackPalace = (nodeEnd.i >= 7 && nodeEnd.i <= 9) && (nodeEnd.j >= 3 && nodeEnd.j <= 5);
+
+                        if (!isInBlackPalace) {
+                            return; // Prevent movement outside the palace
+                        }
+
+                        // Check for capturing opponent's piece
+                        if (nodeEnd.id && nodeEnd.id.includes('den')) {
+                            return; // Prevent capturing allied pieces
+                        } else if (nodeEnd.id !== "") {
+                            objRemove = { id: nodeEnd.id }; // Capture opponent piece
+                        }
+                    } else {
+                        return; // Invalid move if not moving one space in a straight line
+                    }
+                }
                 // end general movement
 
                 let params = new URL(document.location.toString()).searchParams;
