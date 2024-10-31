@@ -1,0 +1,123 @@
+[
+  {
+    "ContainingType": "CChess.Controllers.api.AccountController",
+    "Method": "AddRole",
+    "RelativePath": "api/Account/Add-role",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "role",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CChess.Controllers.api.AccountController",
+    "Method": "AssignRole",
+    "RelativePath": "api/Account/Assign-role",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "CChess.Models.UserRoleViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CChess.Controllers.api.AccountController",
+    "Method": "Login",
+    "RelativePath": "api/Account/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "CChess.Models.LoginViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CChess.Controllers.api.AccountController",
+    "Method": "Register",
+    "RelativePath": "api/Account/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "CChess.Models.RegisterViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CChess.Controllers.api.ChessController",
+    "Method": "getChessBoard",
+    "RelativePath": "api/Chess/loadChessBoard",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CChess.Controllers.api.ChessController",
+    "Method": "chessMove",
+    "RelativePath": "api/Chess/move-check-node",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "movenodeList",
+        "Type": "System.Collections.Generic.List\u00601[[CChess.Models.MoveChess, CChess, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      },
+      {
+        "Name": "roomId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CChess.Controllers.api.RoomController",
+    "Method": "getRoomList",
+    "RelativePath": "api/Room/get-room",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CChess.Controllers.api.RoomController",
+    "Method": "insertRoom",
+    "RelativePath": "api/Room/insert-room",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "room",
+        "Type": "Libs.Entity.Room",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

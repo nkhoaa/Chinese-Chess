@@ -1,0 +1,75 @@
+﻿@{
+    ViewData["Title"] = "Room List";
+}
+
+<h2>Available Rooms</h2>
+
+<!-- Room creation form -->
+<div>
+    <h3>Create a New Room</h3>
+    <input type="text" id="roomName" placeholder="Enter room name" />
+    <button id="createRoomBtn">Create Room</button>
+</div>
+
+<div id="roomList">
+    <!-- Room list will be populated here -->
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Function to load rooms
+        function loadRooms() {
+            $.ajax({
+                url: "/api/Room/get-room",
+                method: "GET",
+                success: function (response) {
+                    if (response.status) {
+                        const roomList = response.data;
+                        let roomHtml = "<ul>";
+                        roomList.forEach(room => {
+                            roomHtml += `<li>${room.name} - <a href="/Home/JoinRoom?roomId=${room.id}">Join</a></li>`;
+                        });
+                        roomHtml += "</ul>";
+                        $("#roomList").html(roomHtml);
+                    } else {
+                        $("#roomList").html("<p>No rooms available.</p>");
+                    }
+                },
+                error: function () {
+                    $("#roomList").html("<p>Error loading rooms. Please try again.</p>");
+                }
+            });
+        }
+
+        // Load rooms initially
+        loadRooms();
+
+        // Handle room creation
+        $("#createRoomBtn").click(function () {
+            const roomName = $("#roomName").val();
+            if (!roomName) {
+                alert("Please enter a room name.");
+                return;
+            }
+            $.ajax({
+                url: "/api/Room/insert-room",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ name: roomName }), // Using "name" to match the Rooms table
+                success: function (response) {
+                    if (response.status) {
+                        alert("Room created successfully!");
+                        loadRooms(); // Reload the room list
+                        $("#roomName").val(""); // Clear input
+                    } else {
+                        alert("Failed to create room.");
+                    }
+                },
+                error: function () {
+                    alert("Error creating room. Please try again.");
+                }
+            });
+        });
+    });
+</script>

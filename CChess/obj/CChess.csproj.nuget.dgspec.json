@@ -1,26 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Visual studio project\\CChess\\CChess\\CChess.csproj": {}
+    "C:\\Users\\ADMIN\\Desktop\\repos\\Chinese-Chess\\CChess\\CChess.csproj": {}
   },
   "projects": {
-    "E:\\Visual studio project\\CChess\\CChess\\CChess.csproj": {
+    "C:\\Users\\ADMIN\\Desktop\\repos\\Chinese-Chess\\CChess\\CChess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Visual studio project\\CChess\\CChess\\CChess.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\Desktop\\repos\\Chinese-Chess\\CChess\\CChess.csproj",
         "projectName": "CChess",
-        "projectPath": "E:\\Visual studio project\\CChess\\CChess\\CChess.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "E:\\Visual studio project\\CChess\\CChess\\obj\\",
+        "projectPath": "C:\\Users\\ADMIN\\Desktop\\repos\\Chinese-Chess\\CChess\\CChess.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ADMIN\\Desktop\\repos\\Chinese-Chess\\CChess\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "E:\\DevX\\Components\\Offline Packages",
-          "E:\\Visual studio tool\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 24.1.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,16 +22,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "E:\\DevX\\Components\\System\\Components\\Packages": {},
-          "E:\\DevX\\DevExtreme\\System\\DevExtreme\\Bin\\AspNetCore": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\Visual studio project\\CChess\\Libs\\Libs.csproj": {
-                "projectPath": "E:\\Visual studio project\\CChess\\Libs\\Libs.csproj"
+              "C:\\Users\\ADMIN\\Desktop\\repos\\Chinese-Chess\\Libs\\Libs.csproj": {
+                "projectPath": "C:\\Users\\ADMIN\\Desktop\\repos\\Chinese-Chess\\Libs\\Libs.csproj"
               }
             }
           }
@@ -85,6 +78,10 @@
               "target": "Package",
               "version": "[6.0.33, )"
             },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.18, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.9.0, )"
@@ -109,27 +106,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Visual studio project\\CChess\\Libs\\Libs.csproj": {
+    "C:\\Users\\ADMIN\\Desktop\\repos\\Chinese-Chess\\Libs\\Libs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Visual studio project\\CChess\\Libs\\Libs.csproj",
+        "projectUniqueName": "C:\\Users\\ADMIN\\Desktop\\repos\\Chinese-Chess\\Libs\\Libs.csproj",
         "projectName": "Libs",
-        "projectPath": "E:\\Visual studio project\\CChess\\Libs\\Libs.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "E:\\Visual studio project\\CChess\\Libs\\obj\\",
+        "projectPath": "C:\\Users\\ADMIN\\Desktop\\repos\\Chinese-Chess\\Libs\\Libs.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ADMIN\\Desktop\\repos\\Chinese-Chess\\Libs\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "E:\\DevX\\Components\\Offline Packages",
-          "E:\\Visual studio tool\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 24.1.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -137,8 +128,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "E:\\DevX\\Components\\System\\Components\\Packages": {},
-          "E:\\DevX\\DevExtreme\\System\\DevExtreme\\Bin\\AspNetCore": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -203,7 +193,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

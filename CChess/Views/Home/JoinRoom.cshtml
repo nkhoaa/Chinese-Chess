@@ -1,0 +1,519 @@
+﻿
+@{
+    ViewData["Title"] = "JoinRoom";
+}
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
+<style>
+    body {
+        display: flex; /* Use flexbox for layout */
+        height: 100vh; /* Full height */
+        margin: 0; /* Remove default margin */
+    }
+
+    .chess-container {
+        flex: 1; /* Allow chessboard to take available space */
+        position: relative; /* Positioning for chessboard */
+    }
+
+    .chessboard {
+        width: 850px;
+        height: 850px;
+        background-image: url("/Images/bancotuong.jpg");
+        position: absolute;
+    }
+
+    .chessnode {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+    }
+
+    .chessimgnode {
+        width: 50px;
+        height: 50px;
+    }
+
+    .chat-container {
+        width: 300px; /* Fixed width for chat */
+        border-left: 1px solid #ccc; /* Separator between chessboard and chat */
+        padding: 10px; /* Padding for chat area */
+        display: flex;
+        flex-direction: column; /* Stack chat messages and input */
+    }
+
+    .chat-input {
+        display: flex; /* Flex for input field and button */
+        align-items: center; /* Center items vertically */
+        margin-bottom: 10px; /* Space between inputs and messages */
+    }
+
+        .chat-input input[type="text"] {
+            flex: 1; /* Allow input field to take available space */
+            padding: 5px; /* Padding for input field */
+            margin-right: 5px; /* Space between user input and message input */
+        }
+
+        .chat-input input[type="button"] {
+            padding: 5px; /* Padding for button */
+        }
+
+    .chat-messages {
+        flex: 1; /* Allow chat messages to take available space */
+        overflow-y: auto; /* Scrollable messages */
+        margin-bottom: 10px; /* Space for input area */
+    }
+</style>
+
+<div id="app" style="min-height:800px; display: flex;">
+    <div class="chess-container">
+        <div class="chessboard">
+            <div v-for="item in chessNode" class="chessnode"
+                 v-on:dragstart="dragStart"
+                 v-on:dragend="dragEnd"
+                 :id="item.id" v-bind:style="{ display: item.visible, top: item.top + 'px', left: item.left + 'px' }">
+                <img :src="'/' + item.src" class="chessimgnode" />
+            </div>
+        </div>
+    </div>
+    <div class="chat-container">
+        <div class="chat-messages">
+            <ul id="messagesList"></ul>
+        </div>
+        <div class="row p-1 chat-input">
+            <div class="col-1">User</div>
+            <div class="col-5">
+                <input type="text" id="userInput" placeholder="Enter your name" />
+            </div>
+        </div>
+        <div class="row p-1 chat-input">
+            <div class="col-1">Message</div>
+            <div class="col-5">
+                <input type="text" class="w-100" id="messageInput" placeholder="Type your message..." />
+            </div>
+        </div>
+        <div class="row p-1">
+            <div class="col-6 text-end">
+                <input type="button" id="sendButton" value="Send Message" />
+            </div>
+        </div>
+        <div class="row p-1">
+            <div class="col-6">
+                <hr />
+            </div>
+        </div>
+        <div class="row p-1">
+            <div class="col-6">
+                <ul id="messagesList"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var matrix = [];
+    var app = new Vue({
+        el: '#app',
+        data: {
+            chessNode: [],
+            top: 0,
+            left: 0
+
+        },
+        methods: {
+            getChessNode() {
+                axios({
+                    url: '/api/chess/loadChessBoard',
+                    method: 'GET',
+                    responseType: 'Json',
+
+                }).then((response) => {
+                    this.chessNode = response.data.chessNode;
+                    matrix = response.data.maxtrix;
+
+                });
+            },
+            getIndexByTopLeft(top, left, matrix) {
+                var obj = {};
+                for (var i = 0; i < matrix.length; i++) {
+                    for (var j = 0; j < matrix[i].length; j++) {
+                        if (Math.abs(matrix[i][j].top - top) < 20 && Math.abs(matrix[i][j].left - left) < 20) {
+                            obj.i = i;
+                            obj.j = j;
+                            obj.id = matrix[i][j].id;
+                            return obj;
+                        }
+                    }
+                }
+                return null;
+            },
+            dragStart(event) {
+                this.top = event.clientY;
+                this.left = event.clientX;
+            },
+            dragEnd(event) {
+                var id = event.currentTarget.id;
+                var moveX = event.clientX - this.left;
+                var moveY = event.clientY - this.top;
+                moveX = moveX + event.currentTarget.offsetLeft;
+                moveY = moveY + event.currentTarget.offsetTop;
+
+                var nodeStart = this.getIndexByTopLeft(event.currentTarget.offsetTop, event.currentTarget.offsetLeft, matrix);
+                var nodeEnd = this.getIndexByTopLeft(moveY, moveX, matrix);
+                if (nodeEnd == null) {
+                    return;
+                }
+
+                var objRemove = null;
+
+                const isRed = id.includes('do');
+
+                // horse movement
+                if (id.indexOf('ma') >= 0) {
+                    var gapI = Math.abs(nodeEnd.i - nodeStart.i);
+                    var gapJ = Math.abs(nodeEnd.j - nodeStart.j);
+
+                    // Validate "L" shaped movement
+                    if (!((gapI === 1 && gapJ === 2) || (gapJ === 1 && gapI === 2))) {
+                        return;
+                    }
+
+                    // Check for "leg blocking" in the L shape movement
+                    if ((gapI === 1 && gapJ === 2) && nodeEnd.j > nodeStart.j) {
+                        if (matrix[nodeStart.i][nodeStart.j + 1].id !== "") {
+                            return; // Blocked move
+                        }
+                    }
+                    if ((gapI === 1 && gapJ === 2) && nodeEnd.j < nodeStart.j) {
+                        if (matrix[nodeStart.i][nodeStart.j - 1].id !== "") {
+                            return; // Blocked move
+                        }
+                    }
+                    if ((gapI === 2 && gapJ === 1) && nodeEnd.i > nodeStart.i) {
+                        if (matrix[nodeStart.i + 1][nodeStart.j].id !== "") {
+                            return; // Blocked move
+                        }
+                    }
+                    if ((gapI === 2 && gapJ === 1) && nodeEnd.i < nodeStart.i) {
+                        if (matrix[nodeStart.i - 1][nodeStart.j].id !== "") {
+                            return; // Blocked move
+                        }
+                    }
+
+                    // Prevent capturing allied pieces
+                    if (nodeEnd.id !== "") {
+                        if ((isRed && nodeEnd.id.includes('do')) || (!isRed && nodeEnd.id.includes('den'))) {
+                            return; // Block move if the piece at nodeEnd is an ally
+                        } else {
+                            objRemove = { id: nodeEnd.id }; // Capture opponent piece
+                        }
+                    }
+                }
+                // end horse movement
+
+                // rook movement
+                if (id.indexOf('xe') >= 0) {
+                    if (nodeStart.i === nodeEnd.i) { // Horizontal movement
+                        let minJ = Math.min(nodeStart.j, nodeEnd.j) + 1;
+                        let maxJ = Math.max(nodeStart.j, nodeEnd.j) - 1;
+
+                        // Check for obstacles between start and end positions
+                        for (let j = minJ; j <= maxJ; j++) {
+                            if (matrix[nodeStart.i][j].id !== "") {
+                                return; // Invalid move if there's a piece in the path
+                            }
+                        }
+                    } else if (nodeStart.j === nodeEnd.j) { // Vertical movement
+                        let minI = Math.min(nodeStart.i, nodeEnd.i) + 1;
+                        let maxI = Math.max(nodeStart.i, nodeEnd.i) - 1;
+
+                        // Check for obstacles between start and end positions
+                        for (let i = minI; i <= maxI; i++) {
+                            if (matrix[i][nodeStart.j].id !== "") {
+                                return; // Invalid move if there's a piece in the path
+                            }
+                        }
+                    } else {
+                        return; // Invalid move if not horizontal or vertical
+                    }
+
+                    // Prevent capturing allied pieces
+                    if (nodeEnd.id && ((isRed && nodeEnd.id.includes('do')) || (!isRed && nodeEnd.id.includes('den')))) {
+                        return;
+                    } else if (nodeEnd.id !== "") { // Capture opponent piece
+                        objRemove = { id: nodeEnd.id };
+                    }
+                }
+                // end rook movement
+
+                // cannon movement
+                if (id.indexOf('phao') >= 0) {
+                    let isHorizontal = nodeStart.i === nodeEnd.i;
+                    let isVertical = nodeStart.j === nodeEnd.j;
+                    let hasScreen = false;
+
+                    // If it's a horizontal move
+                    if (isHorizontal) {
+                        let minJ = Math.min(nodeStart.j, nodeEnd.j) + 1;
+                        let maxJ = Math.max(nodeStart.j, nodeEnd.j) - 1;
+
+                        // Check each position between start and end
+                        for (let j = minJ; j <= maxJ; j++) {
+                            if (matrix[nodeStart.i][j].id !== "") {
+                                if (!hasScreen) {
+                                    hasScreen = true; // First piece acts as screen
+                                } else {
+                                    return; // More than one piece blocks the path
+                                }
+                            }
+                        }
+                    }
+                    // If it's a vertical move
+                    else if (isVertical) {
+                        let minI = Math.min(nodeStart.i, nodeEnd.i) + 1;
+                        let maxI = Math.max(nodeStart.i, nodeEnd.i) - 1;
+
+                        // Check each position between start and end
+                        for (let i = minI; i <= maxI; i++) {
+                            if (matrix[i][nodeStart.j].id !== "") {
+                                if (!hasScreen) {
+                                    hasScreen = true; // First piece acts as screen
+                                } else {
+                                    return; // More than one piece blocks the path
+                                }
+                            }
+                        }
+                    }
+                    // Invalid move if not horizontal or vertical
+                    else {
+                        return;
+                    }
+
+                    // Regular movement: if there's no screen and the end node is empty, move freely like a rook
+                    if (nodeEnd.id === "" && !hasScreen) {
+                        // Allow free movement without capturing
+                        // No return needed here as the movement is valid
+                    }
+                    // Capture movement: if there’s a screen and the target node has an opponent piece
+                    else if (nodeEnd.id !== "" && hasScreen) {
+                        // Prevent capturing allied pieces
+                        if ((isRed && nodeEnd.id.includes('do')) || (!isRed && nodeEnd.id.includes('den'))) {
+                            return; // Invalid move if capturing an ally
+                        }
+                        objRemove = { id: nodeEnd.id }; // Capture opponent piece
+                    } else {
+                        return; // Invalid move if there's no screen but an opponent piece
+                    }
+                }
+                // end canon movement
+
+                // bishop movement
+                if (id.indexOf('tuong') >= 0) {
+                    const deltaI = Math.abs(nodeEnd.i - nodeStart.i);
+                    const deltaJ = Math.abs(nodeEnd.j - nodeStart.j);
+
+                    // Check if the move is exactly two spaces diagonally
+                    if (deltaI === 2 && deltaJ === 2) {
+                        // Check the square in between to ensure it's empty
+                        const midI = (nodeStart.i + nodeEnd.i) / 2;
+                        const midJ = (nodeStart.j + nodeEnd.j) / 2;
+
+                        // Check if the bishop is crossing the river
+                        const isCrossingRiver = (nodeStart.i < 5 && nodeEnd.i > 4) || (nodeStart.i > 4 && nodeEnd.i < 5);
+                        if (isCrossingRiver) {
+                            return; // Invalid move if crossing the river
+                        }
+
+                        // Ensure the square in between is empty
+                        if (matrix[midI][midJ].id === "") {
+                            // Prevent capturing allied pieces
+                            if ((isRed && nodeEnd.id.includes('do')) || (!isRed && nodeEnd.id.includes('den'))) {
+                                return; // Invalid move if capturing an allied piece
+                            }
+
+                            // Capture opponent piece or move to an empty square
+                            if (nodeEnd.id !== "") {
+                                objRemove = { id: nodeEnd.id }; // Capture opponent piece
+                            }
+                        } else {
+                            return; // Invalid move if the space in between is occupied
+                        }
+                    } else {
+                        return; // Invalid move if not moving exactly two spaces diagonally
+                    }
+                }
+                // end bishop movement
+
+                // guard movement
+                if (id.indexOf('si') >= 0) {
+                    const deltaI = Math.abs(nodeEnd.i - nodeStart.i);
+                    const deltaJ = Math.abs(nodeEnd.j - nodeStart.j);
+
+                    // Check if the move is exactly one space diagonally
+                    if (deltaI === 1 && deltaJ === 1) {
+                        // Check if the destination position is within the respective palace
+                        const isInRedPalace = (nodeEnd.i >= 0 && nodeEnd.i <= 2) && (nodeEnd.j >= 3 && nodeEnd.j <= 5);
+                        const isInBlackPalace = (nodeEnd.i >= 7 && nodeEnd.i <= 9) && (nodeEnd.j >= 3 && nodeEnd.j <= 5);
+
+                        // Allow movement only if it's within the respective palace
+                        if ((isRed && !isInRedPalace) || (!isRed && !isInBlackPalace)) {
+                            return; // Prevent movement outside the palace
+                        }
+
+                        // Prevent capturing allied pieces
+                        if ((isRed && nodeEnd.id.includes('do')) || (!isRed && nodeEnd.id.includes('den'))) {
+                            return; // Invalid move if capturing an allied piece
+                        }
+
+                        // Capture opponent piece or move to an empty square
+                        if (nodeEnd.id !== "") {
+                            objRemove = { id: nodeEnd.id }; // Capture opponent piece
+                        }
+                    } else {
+                        return; // Invalid move if not moving exactly one space diagonally
+                    }
+                }
+                // end guard movement
+
+                // pawn movement
+                if (id.indexOf('tot') >= 0) {
+                    const hasCrossedRiver = (isRed && nodeStart.i >= 5) || (!isRed && nodeStart.i < 5);
+
+                    // Determine the forward direction
+                    const forwardDirection = isRed ? 1 : -1;
+                    const deltaI = nodeEnd.i - nodeStart.i;
+                    const deltaJ = Math.abs(nodeEnd.j - nodeStart.j);
+
+                    // Check movement rules
+                    if (!hasCrossedRiver) {
+                        // Before crossing the river, only allow forward movement
+                        if (deltaI === forwardDirection && deltaJ === 0) {
+                            // Valid move forward
+                            if (nodeEnd.id !== "") {
+                                // Prevent capturing allied pieces
+                                if ((isRed && nodeEnd.id.includes('do')) || (!isRed && nodeEnd.id.includes('den'))) return;
+                                objRemove = { id: nodeEnd.id }; // Capture opponent piece
+                            }
+                        } else {
+                            return; // Invalid move if not moving forward before crossing the river
+                        }
+                    } else {
+                        // After crossing the river, allow forward or sideways movement
+                        if ((deltaI === forwardDirection && deltaJ === 0) || (deltaI === 0 && deltaJ === 1)) {
+                            // Valid move forward or sideways
+                            if (nodeEnd.id !== "") {
+                                // Prevent capturing allied pieces
+                                if ((isRed && nodeEnd.id.includes('do')) || (!isRed && nodeEnd.id.includes('den'))) return;
+                                objRemove = { id: nodeEnd.id }; // Capture opponent piece
+                            }
+                        } else {
+                            return; // Invalid move if not moving forward or sideways after crossing the river
+                        }
+                    }
+                }
+                // end pawn movement
+
+                // general movement
+                // Check for Red General
+                if (id === 'vuado') {
+                    const deltaI = Math.abs(nodeEnd.i - nodeStart.i);
+                    const deltaJ = Math.abs(nodeEnd.j - nodeStart.j);
+
+                    // General can only move one space horizontally or vertically
+                    if ((deltaI === 1 && deltaJ === 0) || (deltaI === 0 && deltaJ === 1)) {
+                        // Check if the move is within the red palace
+                        const isInRedPalace = (nodeEnd.i >= 0 && nodeEnd.i <= 2) && (nodeEnd.j >= 3 && nodeEnd.j <= 5);
+
+                        if (!isInRedPalace) {
+                            return; // Prevent movement outside the palace
+                        }
+
+                        // Check for capturing opponent's piece
+                        if (nodeEnd.id && nodeEnd.id.includes('do')) {
+                            return; // Prevent capturing allied pieces
+                        } else if (nodeEnd.id !== "") {
+                            objRemove = { id: nodeEnd.id }; // Capture opponent piece
+                        }
+                    } else {
+                        return; // Invalid move if not moving one space in a straight line
+                    }
+                }
+
+                // Check for Black General
+                else if (id === 'vuaden') {
+                    const deltaI = Math.abs(nodeEnd.i - nodeStart.i);
+                    const deltaJ = Math.abs(nodeEnd.j - nodeStart.j);
+
+                    // General can only move one space horizontally or vertically
+                    if ((deltaI === 1 && deltaJ === 0) || (deltaI === 0 && deltaJ === 1)) {
+                        // Check if the move is within the black palace
+                        const isInBlackPalace = (nodeEnd.i >= 7 && nodeEnd.i <= 9) && (nodeEnd.j >= 3 && nodeEnd.j <= 5);
+
+                        if (!isInBlackPalace) {
+                            return; // Prevent movement outside the palace
+                        }
+
+                        // Check for capturing opponent's piece
+                        if (nodeEnd.id && nodeEnd.id.includes('den')) {
+                            return; // Prevent capturing allied pieces
+                        } else if (nodeEnd.id !== "") {
+                            objRemove = { id: nodeEnd.id }; // Capture opponent piece
+                        }
+                    } else {
+                        return; // Invalid move if not moving one space in a straight line
+                    }
+                }
+                // end general movement
+
+                let params = new URL(document.location.toString()).searchParams;
+                let roomId = params.get("roomId");
+                var para = [{ id: id, fromi: nodeStart.i, fromj: nodeStart.j, toi: nodeEnd.i, toj: nodeEnd.j }];
+                if (objRemove != null) {
+                    para.push(objRemove);
+                }
+                axios({
+                    url: '/api/chess/move-check-node?roomId=' + roomId,
+                    method: 'Post',
+                    responseType: 'Json',
+                    data: para
+                }).then((response) => {
+
+
+                });
+
+            }
+        },
+        mounted: function () {
+            this.getChessNode();
+            let params = new URL(document.location.toString()).searchParams;
+            let roomId = params.get("roomId");
+            var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub?roomId=" + roomId).build();
+            connection.on("ReceiveChessMove", function (message) {
+                console.log(message);
+                var response = JSON.parse(message);
+                matrix[response[0].fromi][response[0].fromj].id = "";
+                var nodeEnd = matrix[response[0].toi][response[0].toj];
+                nodeEnd.id = response[0].id;
+
+
+                var obj = document.getElementById(response[0].id);
+                obj.style.top = nodeEnd.top + 'px';
+                obj.style.left = nodeEnd.left + 'px';
+
+                if (response.length > 1) {
+                    var temp = document.getElementById(response[1].id);
+                    temp.style.display = "none";
+                }
+            });
+
+            connection.start().then(function () {
+
+            }).catch(function (err) {
+                return console.error(err.toString());
+            });
+        }
+    });
+</script>

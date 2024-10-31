@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CChess")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d1b53f38dad29e2a71b43680754f8a903ee5d895")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d347a69fc680ce708cffcf6e4f69686212e42b7d")]
 [assembly: System.Reflection.AssemblyProductAttribute("CChess")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CChess")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

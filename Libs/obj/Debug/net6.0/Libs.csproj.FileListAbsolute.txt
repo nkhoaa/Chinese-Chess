@@ -13,3 +13,18 @@ E:\Visual studio project\CChess\Libs\obj\Debug\net6.0\Libs.pdb
 E:\Visual studio project\CChess\Libs\obj\Debug\net6.0\Libs.genruntimeconfig.cache
 E:\Visual studio project\CChess\Libs\obj\Debug\net6.0\ref\Libs.dll
 E:\Visual studio project\CChess\Libs\obj\Debug\net6.0\Libs.sourcelink.json
+C:\Users\ADMIN\Desktop\repos\Chinese-Chess\Libs\bin\Debug\net6.0\Libs.deps.json
+C:\Users\ADMIN\Desktop\repos\Chinese-Chess\Libs\bin\Debug\net6.0\Libs.runtimeconfig.json
+C:\Users\ADMIN\Desktop\repos\Chinese-Chess\Libs\bin\Debug\net6.0\Libs.dll
+C:\Users\ADMIN\Desktop\repos\Chinese-Chess\Libs\bin\Debug\net6.0\Libs.pdb
+C:\Users\ADMIN\Desktop\repos\Chinese-Chess\Libs\obj\Debug\net6.0\Libs.csproj.AssemblyReference.cache
+C:\Users\ADMIN\Desktop\repos\Chinese-Chess\Libs\obj\Debug\net6.0\Libs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ADMIN\Desktop\repos\Chinese-Chess\Libs\obj\Debug\net6.0\Libs.AssemblyInfoInputs.cache
+C:\Users\ADMIN\Desktop\repos\Chinese-Chess\Libs\obj\Debug\net6.0\Libs.AssemblyInfo.cs
+C:\Users\ADMIN\Desktop\repos\Chinese-Chess\Libs\obj\Debug\net6.0\Libs.csproj.CoreCompileInputs.cache
+C:\Users\ADMIN\Desktop\repos\Chinese-Chess\Libs\obj\Debug\net6.0\Libs.sourcelink.json
+C:\Users\ADMIN\Desktop\repos\Chinese-Chess\Libs\obj\Debug\net6.0\Libs.dll
+C:\Users\ADMIN\Desktop\repos\Chinese-Chess\Libs\obj\Debug\net6.0\refint\Libs.dll
+C:\Users\ADMIN\Desktop\repos\Chinese-Chess\Libs\obj\Debug\net6.0\Libs.pdb
+C:\Users\ADMIN\Desktop\repos\Chinese-Chess\Libs\obj\Debug\net6.0\Libs.genruntimeconfig.cache
+C:\Users\ADMIN\Desktop\repos\Chinese-Chess\Libs\obj\Debug\net6.0\ref\Libs.dll
