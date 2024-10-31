@@ -1,0 +1,59 @@
+﻿@model CChess.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+<div>
+    <form id="loginForm">
+        <div class="form-group">
+            <label asp-for="Username">Username</label>
+            <input asp-for="Username" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Password">Password</label>
+            <input asp-for="Password" type="password" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+    <div id="error" style="display:none; color:red;">Invalid credentials, please try again.</div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#loginForm').submit(function (e) {
+                e.preventDefault();
+
+                var data = {
+                    Username: $('#Username').val(),
+                    Password: $('#Password').val()
+                };
+
+                $.ajax({
+                    url: '/api/account/login',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function (response) {
+                        console.log('Full response:', response);
+                        if (response.token) {
+                            console.log(response.token);
+                            localStorage.setItem('authToken', response.token);
+                            setTimeout(function () {
+                                window.location.href = '/home';
+                            }, 1000);
+                        }
+                    },
+                    error: function () {
+                        $('#error').show();
+                    }
+                });
+            });
+        });
+
+    </script>
+}

@@ -1,0 +1,76 @@
+﻿@model CChess.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+
+<div>
+    <form id="registerForm">
+        <div class="form-group">
+            <label asp-for="Username">Username</label>
+            <input asp-for="Username" class="form-control" id="Username" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" type="email" class="form-control" id="Email" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Password">Password</label>
+            <input asp-for="Password" type="password" class="form-control" id="Password" />
+        </div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+
+    <div id="error" style="display:none; color:red;">Error registering user, please try again.</div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#registerForm').submit(function (e) {
+                e.preventDefault();
+
+                var data = {
+                    Username: $('#Username').val(),
+                    Email: $('#Email').val(),
+                    Password: $('#Password').val()
+                };
+
+                $.ajax({
+                    url: '/api/account/register',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function (response) {
+                        console.log('Registration successful:', response);
+
+                        // After successful registration, assign the "User" role
+                        assignUserRole(data.Username);
+                    },
+                    error: function () {
+                        $('#error').show();
+                    }
+                });
+            });
+
+            function assignUserRole(username) {
+                $.ajax({
+                    url: '/api/account/assign-role',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ UserName: username, Role: 'User' }),
+                    success: function (response) {
+                        console.log('Role assigned successfully:', response);
+                        // Redirect to the login page or another view
+                        window.location.href = '/auth/login';
+                    },
+                    error: function () {
+                        console.error('Failed to assign role');
+                    }
+                });
+            }
+        });
+    </script>
+}

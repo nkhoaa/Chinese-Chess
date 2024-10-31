@@ -75,3 +75,10 @@ E:\Visual studio project\CChess\CChess\obj\Debug\net6.0\CChess.genruntimeconfig.
 E:\Visual studio project\CChess\CChess\obj\Debug\net6.0\ref\CChess.dll
 E:\Visual studio project\CChess\CChess\obj\Debug\net6.0\CChess.sourcelink.json
 E:\Visual studio project\CChess\CChess\bin\Debug\net6.0\libman.json
+E:\Visual studio project\CChess\CChess\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\Visual studio project\CChess\CChess\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+E:\Visual studio project\CChess\CChess\bin\Debug\net6.0\Microsoft.OpenApi.dll
+E:\Visual studio project\CChess\CChess\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+E:\Visual studio project\CChess\CChess\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\Visual studio project\CChess\CChess\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\Visual studio project\CChess\CChess\obj\Debug\net6.0\CChess.MvcApplicationPartsAssemblyInfo.cs
