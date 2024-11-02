@@ -107,20 +107,50 @@
         </div>
         <div class="row p-1">
             <div class="col-6">
-                <ul id="messagesList"></ul>
+                <div id="app">
+                    <!-- Chessboard and other elements here -->
+                    <button onclick="undoMove()">Undo Last Move</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
+    var moveHistory = [
+        // { id: "phaodo1", fromi: 2, fromj: 1, toi: 3, toj: 1 }
+    ];
+
+    function undoMove() {
+        if (moveHistory.length > 0) {
+            const lastMove = moveHistory.pop();
+            const piece = document.getElementById(lastMove.id);
+
+            if (piece) {
+                // Get previous position from the matrix
+                const previousPosition = matrix[lastMove.fromi][lastMove.fromj];
+
+                // Update the piece's position to the previous grid location
+                piece.style.top = previousPosition.top + 'px';
+                piece.style.left = previousPosition.left + 'px';
+
+                // Update the matrix to reflect the move reversal
+                matrix[lastMove.toi][lastMove.toj].id = "";  // Clear destination cell
+                matrix[lastMove.fromi][lastMove.fromj].id = lastMove.id;  // Restore initial cell
+            }
+        } else {
+            alert("No moves to undo!");
+        }
+    }
+
     var matrix = [];
     var app = new Vue({
         el: '#app',
         data: {
             chessNode: [],
             top: 0,
-            left: 0
+            left: 0,
+            moveHistory: []
 
         },
         methods: {
@@ -165,6 +195,25 @@
                 var nodeEnd = this.getIndexByTopLeft(moveY, moveX, matrix);
                 if (nodeEnd == null) {
                     return;
+                }
+
+                if (id && nodeStart && nodeEnd && (nodeStart.i !== nodeEnd.i || nodeStart.j !== nodeEnd.j)) {
+                    // Push the move to the moveHistory stack
+                    moveHistory.push({
+                        id: id,
+                        fromi: nodeStart.i,
+                        fromj: nodeStart.j,
+                        toi: nodeEnd.i,
+                        toj: nodeEnd.j
+                    });
+
+                    // Move the piece visually
+                    event.currentTarget.style.top = nodeEnd.top + 'px';
+                    event.currentTarget.style.left = nodeEnd.left + 'px';
+
+                    // Update the matrix for the new position
+                    matrix[nodeEnd.i][nodeEnd.j].id = id;
+                    matrix[nodeStart.i][nodeStart.j].id = ""; // Clear the old position
                 }
 
                 var objRemove = null;
@@ -509,6 +558,7 @@
 
                 console.log("Game has been reset.");
             }
+
 
         },
         mounted: function () {
