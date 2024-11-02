@@ -468,6 +468,17 @@
                 }
                 // end general movement
 
+                // Check objremove is general
+                if (objRemove) {
+                    if (objRemove.id === "vuado") {
+                        alert("Black wins!");
+                        this.resetGame(); 
+                    } else if (objRemove.id === "vuaden") {
+                        alert("White wins!");
+                        this.resetGame(); 
+                    }
+                }
+
                 let params = new URL(document.location.toString()).searchParams;
                 let roomId = params.get("roomId");
                 var para = [{ id: id, fromi: nodeStart.i, fromj: nodeStart.j, toi: nodeEnd.i, toj: nodeEnd.j }];
@@ -484,7 +495,21 @@
 
                 });
 
+            },
+            resetGame() {
+                matrix = [];
+                this.chessNode = [];
+
+                this.getChessNode();
+
+                const pieces = document.querySelectorAll('.chess-piece'); // Adjust selector as needed
+                pieces.forEach(piece => {
+                    piece.style.display = 'none'; // Hide all pieces initially
+                });
+
+                console.log("Game has been reset.");
             }
+
         },
         mounted: function () {
             this.getChessNode();
@@ -515,5 +540,20 @@
                 return console.error(err.toString());
             });
         }
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('/api/account/get-username')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('userInput').value = data.username || 'Guest';
+            })
+            .catch(error => {
+                console.error("Error fetching username:", error);
+            });
     });
 </script>

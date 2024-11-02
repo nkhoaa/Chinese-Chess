@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -42,28 +43,41 @@ namespace CChess.Controllers.api
         public async Task<IActionResult> Login([FromBody] LoginViewModel model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
-            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password)) 
+            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 var userRoles = await _userManager.GetRolesAsync(user);
-
                 var authClaims = new List<Claim>
                 {
                     new Claim(JwtRegisteredClaimNames.Sub, user.UserName!),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id),
+                    new Claim(ClaimTypes.Email, user.Email ?? string.Empty)
                 };
 
                 authClaims.AddRange(userRoles.Select(role => new Claim(ClaimTypes.Role, role)));
 
                 var token = new JwtSecurityToken(
                     issuer: _configuration["Jwt:Issuer"],
+                    audience: _configuration["Jwt:Audience"],
                     expires: DateTime.Now.AddMinutes(double.Parse(_configuration["Jwt:ExpireMinutes"]!)),
                     claims: authClaims,
-                    signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!)), 
-                    
-                    SecurityAlgorithms.HmacSha256
-                    )
+                    signingCredentials: new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!)),
+                    SecurityAlgorithms.HmacSha256)
                 );
-                return Ok(new {Token = new JwtSecurityTokenHandler().WriteToken(token) });
+
+                var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+
+                // Set token as an HTTP-only cookie
+                HttpContext.Response.Cookies.Append("authToken", tokenString, new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true, // Use true if HTTPS
+                    SameSite = SameSiteMode.None, // Restrict cross-site usage
+                    Expires = DateTime.Now.AddMinutes(double.Parse(_configuration["Jwt:ExpireMinutes"]!))
+                });
+
+                //return Ok(new { message = "Login successful" });
+                return Ok(new { Token = tokenString });
             }
             return Unauthorized();
         }
@@ -99,6 +113,20 @@ namespace CChess.Controllers.api
                 return Ok(new { message = "Role assigned successfully" });
             }
             return BadRequest(result.Errors);
+        }
+
+        [HttpPost("Logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.Response.Cookies.Delete("authToken");
+            return Ok(new { message = "Logged out successfully", redirectUrl = "auth/login" });
+        }
+
+        [HttpGet("Get-username")]
+        public IActionResult GetUsername()
+        {
+            var userName = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return Ok(new { username = userName });
         }
     }
 }

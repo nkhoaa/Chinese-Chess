@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace CChess.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class HomeController : Controller
     {
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -15,8 +17,12 @@ namespace CChess.Controllers
             _logger = logger;
         }
 
+        //[AllowAnonymous]
         public IActionResult Index()
         {
+            Response.Headers.Add("Cache-Control", "no-store");
+            Response.Headers.Add("Pragma", "no-cache");
+            Response.Headers.Add("Expires", "-1");
             return View();
         }
 

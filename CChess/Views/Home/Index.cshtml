@@ -5,7 +5,7 @@
 <h2>Welcome to CChess</h2>
 
 <!-- Authentication options -->
-<div>
+@* <div>
     <h3>Get Started</h3>
     <a href="/auth/login" class="btn btn-primary">Login</a>
     <a href="/auth/register" class="btn btn-secondary">Register</a>
@@ -16,11 +16,11 @@
     <h4>Or, play anonymously</h4>
     <input type="text" id="anonymousName" placeholder="Enter your name" />
     <button id="playAnonymouslyBtn" class="btn btn-info">Play Anonymously</button>
-</div>
+</div> *@
 
 <!-- Link to Room List -->
 <div style="margin-top: 30px;">
-    <h3>Or join an existing game room:</h3>
+    <h3>Join an existing game room:</h3>
     <a href="@Url.Action("RoomList", "Home")" class="btn btn-link">View Available Rooms</a>
 </div>
 

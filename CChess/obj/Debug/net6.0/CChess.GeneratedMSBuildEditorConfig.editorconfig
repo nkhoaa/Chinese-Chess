@@ -9,71 +9,75 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CChess
 build_property.RootNamespace = CChess
-build_property.ProjectDir = C:\Users\ADMIN\Desktop\repos\Chinese-Chess\CChess\
+build_property.ProjectDir = E:\Visual studio project\CChess\CChess\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\ADMIN\Desktop\repos\Chinese-Chess\CChess
+build_property.MSBuildProjectDirectory = E:\Visual studio project\CChess\CChess
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/ADMIN/Desktop/repos/Chinese-Chess/CChess/Views/Auth/AddRole.cshtml]
+[E:/Visual studio project/CChess/CChess/Views/Auth/AddRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxBZGRSb2xlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/repos/Chinese-Chess/CChess/Views/Auth/Login.cshtml]
+[E:/Visual studio project/CChess/CChess/Views/Auth/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/repos/Chinese-Chess/CChess/Views/Auth/Register.cshtml]
+[E:/Visual studio project/CChess/CChess/Views/Auth/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/repos/Chinese-Chess/CChess/Views/ChessBoard.cshtml]
+[E:/Visual studio project/CChess/CChess/Views/ChessBoard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlc3NCb2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/repos/Chinese-Chess/CChess/Views/Home/ChessBoard.cshtml]
+[E:/Visual studio project/CChess/CChess/Views/Home/ChessBoard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDaGVzc0JvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/repos/Chinese-Chess/CChess/Views/Home/Index.cshtml]
+[E:/Visual studio project/CChess/CChess/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/repos/Chinese-Chess/CChess/Views/Home/JoinRoom.cshtml]
+[E:/Visual studio project/CChess/CChess/Views/Home/JoinRoom.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxKb2luUm9vbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/repos/Chinese-Chess/CChess/Views/Home/login.cshtml]
+[E:/Visual studio project/CChess/CChess/Views/Home/login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxsb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/repos/Chinese-Chess/CChess/Views/Home/Privacy.cshtml]
+[E:/Visual studio project/CChess/CChess/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/repos/Chinese-Chess/CChess/Views/Home/RoomList.cshtml]
+[E:/Visual studio project/CChess/CChess/Views/Home/RoomList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSb29tTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/repos/Chinese-Chess/CChess/Views/Shared/Error.cshtml]
+[E:/Visual studio project/CChess/CChess/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/repos/Chinese-Chess/CChess/Views/Shared/_ValidationScriptsPartial.cshtml]
+[E:/Visual studio project/CChess/CChess/Views/Shared/_AuthLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BdXRoTGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Visual studio project/CChess/CChess/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/repos/Chinese-Chess/CChess/Views/_ViewImports.cshtml]
+[E:/Visual studio project/CChess/CChess/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/repos/Chinese-Chess/CChess/Views/_ViewStart.cshtml]
+[E:/Visual studio project/CChess/CChess/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ADMIN/Desktop/repos/Chinese-Chess/CChess/Views/Shared/_Layout.cshtml]
+[E:/Visual studio project/CChess/CChess/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-mwbeet17c8
