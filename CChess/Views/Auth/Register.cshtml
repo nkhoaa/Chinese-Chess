@@ -26,7 +26,10 @@
                     <label asp-for="Password">Password</label>
                     <input asp-for="Password" type="password" class="form-control" id="Password" />
                 </div>
-                <button type="submit" class="btn btn-primary">Register</button>
+                <div class="d-flex justify-content-between align-items-center">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button id="loginRedirectButton" type="button" class="btn btn-link" style="margin-left: 10px; padding: 0;">Already have an account? Login here</button>
+                </div>
             </form>
 
             <div id="error" style="display:none; color:red;">Error registering user, please try again.</div>
@@ -79,6 +82,10 @@
                     }
                 });
             }
+
+            $('#loginRedirectButton').click(function () {
+                window.location.href = '/auth/login'; // Change this to your login page URL
+            });
         });
     </script>
 }

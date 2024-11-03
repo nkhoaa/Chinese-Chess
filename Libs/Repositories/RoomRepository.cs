@@ -12,6 +12,7 @@ namespace Libs.Repositories
     {
         public List<Room> getRoomList();
         public void insertRoom(Room room);
+        public int GetHighestRoomNumber();
     }
 
     public class RoomRepository : RepositoryBase<Room>, IRoomRepository
@@ -29,6 +30,21 @@ namespace Libs.Repositories
         {
             _dbContext.Rooms.Add(room);
             _dbContext.SaveChanges();
+        }
+
+        public int GetHighestRoomNumber()
+        {
+            var highestRoom = _dbContext.Rooms
+                .Where(r => r.Name.StartsWith("Room "))
+                .OrderByDescending(r => r.Name)
+                .FirstOrDefault();
+
+            if (highestRoom != null && int.TryParse(highestRoom.Name.Replace("Room ", ""), out int roomNumber))
+            {
+                return roomNumber;
+            }
+
+            return 0; 
         }
     }
 }

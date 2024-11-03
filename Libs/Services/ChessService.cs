@@ -29,6 +29,12 @@ namespace Libs.Services
             return roomRepository.getRoomList();
         }
 
+        public string GenerateNextRoomName()
+        {
+            int highestRoomNumber = roomRepository.GetHighestRoomNumber();
+            return $"Room {highestRoomNumber + 1}";
+        }
+
         public void insertRoom(Room room)
         {
             roomRepository.insertRoom(room);

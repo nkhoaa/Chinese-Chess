@@ -19,7 +19,10 @@
                     <label asp-for="Password">Password</label>
                     <input asp-for="Password" type="password" class="form-control" />
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <div class="d-flex justify-content-between align-items-center">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button id="registerButton" class="btn btn-link" style="margin-top: 10px; margin-left: 10px; padding: 0;">Don't have an account? Register here</button>
+                </div>
             </form>
 
             <div id="error" style="display:none; color:red;">Invalid credentials, please try again.</div>
@@ -50,6 +53,10 @@
                         $('#error').show();
                     }
                 });
+            });
+
+            $('#registerButton').click(function () {
+                window.location.href = '/auth/register'; 
             });
         });
     </script>

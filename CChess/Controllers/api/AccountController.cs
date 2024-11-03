@@ -119,7 +119,7 @@ namespace CChess.Controllers.api
         public IActionResult Logout()
         {
             HttpContext.Response.Cookies.Delete("authToken");
-            return Ok(new { message = "Logged out successfully", redirectUrl = "auth/login" });
+            return Ok(new { message = "Logged out successfully", redirectUrl = "/auth/login" });
         }
 
         [HttpGet("Get-username")]

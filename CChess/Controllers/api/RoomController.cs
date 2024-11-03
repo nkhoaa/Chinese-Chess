@@ -24,13 +24,13 @@ namespace CChess.Controllers.api
         }
 
         [HttpPost("insert-room")]
-        public ActionResult insertRoom(Room room) 
+        public ActionResult insertRoom() 
         {
             Room r = new Room();
             r.Id = Guid.NewGuid();
-            r.Name = room.Name;
+            r.Name = chessService.GenerateNextRoomName();
             chessService.insertRoom(r);
-            return Ok(new { status = true, message = ""} );
+            return Ok(new { status = true, message = "", roomId = r.Id } );
         }
     }
 }

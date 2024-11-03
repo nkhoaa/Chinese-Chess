@@ -5,12 +5,19 @@
 <h2>Available Rooms</h2>
 
 <!-- Room creation form -->
-<div>
-    <h3>Create a New Room</h3>
-    <input type="text" id="roomName" placeholder="Enter room name" />
-    <button id="createRoomBtn">Create Room</button>
-</div>
+<div class="row">
+    <div class="col-md-6">
+        <h3>Create a New Room</h3>
+        <button id="createRoomBtn">Create Room</button>
+    </div>
 
+    <div class="col-md-6">
+        <h3>Join Room by ID</h3>
+        <input type="text" id="roomId" placeholder="Enter room Id" />
+        <button id="joinRoomBtn">Join Room</button>
+    </div>
+</div>
+<h3>Room List</h3>
 <div id="roomList">
     <!-- Room list will be populated here -->
 </div>
@@ -46,22 +53,39 @@
         loadRooms();
 
         // Handle room creation
+        // $("#createRoomBtn").click(function () {
+        //     const roomName = $("#roomName").val();
+        //     if (!roomName) {
+        //         alert("Please enter a room name.");
+        //         return;
+        //     }
+        //     $.ajax({
+        //         url: "/api/Room/insert-room",
+        //         method: "POST",
+        //         contentType: "application/json",
+        //         data: JSON.stringify({ name: roomName }), // Send as an object with a "name" property
+        //         success: function (response) {
+        //             if (response.status) {
+        //                 window.location.href = `/Home/JoinRoom?roomId=${response.roomId}`;
+        //             } else {
+        //                 alert("Failed to create room.");
+        //             }
+        //         },
+        //         error: function () {
+        //             alert("Error creating room. Please try again.");
+        //         }
+        //     });
+        // });
+
         $("#createRoomBtn").click(function () {
-            const roomName = $("#roomName").val();
-            if (!roomName) {
-                alert("Please enter a room name.");
-                return;
-            }
+            // Make an AJAX request to create a room without input
             $.ajax({
                 url: "/api/Room/insert-room",
                 method: "POST",
                 contentType: "application/json",
-                data: JSON.stringify({ name: roomName }), // Using "name" to match the Rooms table
                 success: function (response) {
                     if (response.status) {
-                        alert("Room created successfully!");
-                        loadRooms(); // Reload the room list
-                        $("#roomName").val(""); // Clear input
+                        window.location.href = `/Home/JoinRoom?roomId=${response.roomId}`;
                     } else {
                         alert("Failed to create room.");
                     }
@@ -70,6 +94,17 @@
                     alert("Error creating room. Please try again.");
                 }
             });
+        });
+
+        $('#joinRoomBtn').click(function () {
+            var roomId = $('#roomId').val(); 
+
+            if (!roomId) {
+                alert("Please enter a room ID.");
+                return;
+            }
+
+            window.location.href = `/Home/JoinRoom?roomId=${roomId}`;
         });
     });
 </script>

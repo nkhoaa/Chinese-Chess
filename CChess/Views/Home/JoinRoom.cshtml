@@ -5,6 +5,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>
 <style>
@@ -85,19 +86,31 @@
         </div>
         <div class="row p-1 chat-input">
             <div class="col-1">User</div>
-            <div class="col-5">
+            <div class="col-5" style="margin-left: 50px">
                 <input type="text" id="userInput" placeholder="Enter your name" />
             </div>
         </div>
         <div class="row p-1 chat-input">
             <div class="col-1">Message</div>
-            <div class="col-5">
-                <input type="text" class="w-100" id="messageInput" placeholder="Type your message..." />
+            <div class="col-5" style="margin-left: 50px">
+                <input type="text" id="messageInput" placeholder="Type your message..." />
             </div>
         </div>
-        <div class="row p-1">
-            <div class="col-6 text-end">
-                <input type="button" id="sendButton" value="Send Message" />
+        <div class="row p-1 chat-input">
+            <div class="col-6 text-end d-flex align-items-center">
+                <input type="button" id="sendButton" value="Send Message" class="me-2" />
+                <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        😊
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><button class="dropdown-item emoji-item">😊</button></li>
+                        <li><button class="dropdown-item emoji-item">😂</button></li>
+                        <li><button class="dropdown-item emoji-item">👍</button></li>
+                        <li><button class="dropdown-item emoji-item">❤️</button></li>
+                        <li><button class="dropdown-item emoji-item">🎉</button></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="row p-1">
@@ -117,6 +130,32 @@
 </div>
 
 <script>
+    $(document).ready(function () {
+        // Handle Send Message button click
+        $('#sendButton').click(function () {
+            const user = $('#userInput').val();
+            const message = $('#messageInput').val();
+            sendMessage(user, message);
+            $('#messageInput').val(''); // Clear the message input after sending
+        });
+
+        // Handle emoji selection - add to message input field
+        $('.emoji-item').click(function () {
+            const emoji = $(this).text();
+            const currentMessage = $('#messageInput').val();
+            $('#messageInput').val(currentMessage + emoji); // Add emoji to the message input
+        });
+
+        // Function to send message (use your actual SignalR setup here)
+        function sendMessage(user, message) {
+            if (message.trim() === "") return; // Don't send empty messages
+
+            connection.invoke("SendMessage", user, message).catch(function (err) {
+                console.error(err.toString());
+            });
+        }
+    });
+
     var moveHistory = [
         // { id: "phaodo1", fromi: 2, fromj: 1, toi: 3, toj: 1 }
     ];
