@@ -118,20 +118,24 @@
                 <hr />
             </div>
         </div>
-        <div class="row p-1">
-            <div class="col-6">
-                <div id="app">
+        <div class="row p-1 chat-input">
+            <div class="col-6 text-end d-flex align-items-center">
+                <div id="app" style="margin-right: 20px">
                     <!-- Chessboard and other elements here -->
-                    <button onclick="undoMove()">Undo Last Move</button>
+                    <button onclick="undoMove()">Undo</button>
+                </div>
+                <div class="col-6 text-end">
+                    <button id="surrenderButton" onclick="surrender()">Surrender</button>
                 </div>
             </div>
         </div>
         
-        <div class="row p-1">
+@*         <div class="row p-1">
             <div class="col-6 text-end">
                 <button id="surrenderButton" onclick="surrender()">Surrender</button>
             </div>
-        </div>
+        </div> *@
+
         @* <div class="row p-1">
             <div class="col-6 text-end">
                 <p id="userListDisplay"></p>
