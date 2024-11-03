@@ -25,6 +25,11 @@ namespace CChess.Hubs
 
             return base.OnConnectedAsync();
         }
+        public async Task Surrender(string message)
+        {
+            await Clients.All.SendAsync("PlayerSurrendered", message);
+            // Other surrender logic...
+        }
         public override async Task<Task> OnDisconnectedAsync(Exception exception)
         {
             string roomId = Context.GetHttpContext().Request.Query["roomId"];

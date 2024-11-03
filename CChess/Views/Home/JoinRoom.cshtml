@@ -126,6 +126,24 @@
                 </div>
             </div>
         </div>
+        
+        <div class="row p-1">
+            <div class="col-6 text-end">
+                <button id="surrenderButton" onclick="surrender()">Surrender</button>
+            </div>
+        </div>
+        @* <div class="row p-1">
+            <div class="col-6 text-end">
+                <p id="userListDisplay"></p>
+                <h3>Current Users in Room:</h3>
+                    <ul>
+                        @foreach (var user in ViewBag.UserList as List<string>)
+                        {
+                            <li>@user</li>
+                        }
+                    </ul>
+            </div>
+        </div> *@
     </div>
 </div>
 
@@ -159,7 +177,63 @@
     var moveHistory = [
         // { id: "phaodo1", fromi: 2, fromj: 1, toi: 3, toj: 1 }
     ];
+    // const userList = [];
+    const userList = @Html.Raw(Json.Serialize(ViewBag.UserList ?? new List<string>()));
+    console.log("User List:", userList);
+    function updateUserListDisplay() {
+        // Get the HTML element where we want to display the user list
+        const userListDisplay = document.getElementById('userListDisplay');
+        
+        // Clear the existing list
+        userListDisplay.innerHTML = '';
 
+        // Only show the first two users in the display
+        userList.slice(0, 2).forEach(username => {
+            const listItem = document.createElement('li');
+            listItem.textContent = username;
+            userListDisplay.appendChild(listItem);
+        });
+    }
+    // function joinRoom() {
+    //         Fetch the username when the user joins
+    //         fetch('/api/account/Get-username')
+    //             .then(response => {
+    //                 if (!response.ok) {
+    //                     throw new Error('Network response was not ok');
+    //                 }
+    //                 return response.json();
+    //             })
+    //             .then(data => {
+    //                 const username = data.username || 'Guest';
+
+    //                 Add the username to the list
+    //                 userList.push(username);
+
+    //                 Check if the list exceeds two users
+    //                 if (userList.length > 2) {
+    //                     console.log("More than two users have joined. Perform action.");
+    //                     Example action when more than two users join
+    //                     alert("Room is full"); or any other specific action
+    //                 } else {
+    //                     console.log(`${username} joined the room.`);
+    //                 }
+                    
+    //                 Display the user list
+    //                 console.log("Current users in the room:", userList);
+    //             })
+    //             .catch(error => {
+    //                 console.error("Error fetching username:", error);
+    //             });
+    //     }
+    // window.onload = joinRoom;
+
+    // document.addEventListener('DOMContentLoaded', (event) => {
+    //     joinRoom();
+    // });
+
+    var moveHistory = [
+        // { id: "phaodo1", fromi: 2, fromj: 1, toi: 3, toj: 1 }
+    ];
     function undoMove() {
         if (moveHistory.length > 0) {
             const lastMove = moveHistory.pop();
@@ -182,6 +256,76 @@
         }
     }
 
+
+    // function undoMove() {
+    //     const currentUserName = document.getElementById('userInput').value;
+
+    //     if (!app.canUserMove()) {
+    //         return; Prevent move if user is not allowed
+    //     }
+
+    //     if (moveHistory.length > 0) {
+    //         const lastMove = app.moveHistory.pop();
+    //         const lastMove = moveHistory.pop();
+    //             if (!lastMove || !lastMove.id) {
+    //                 console.error("Invalid move in history:", lastMove);
+    //                 alert("Cannot undo the move as no valid move is available.");
+    //                 return;
+    //             }
+    //         const piece = document.getElementById(lastMove.id);
+
+    //         if (piece) {
+    //             Get previous position from the matrix
+    //             const previousPosition = app.matrix[lastMove.fromi][lastMove.fromj];
+
+    //             Update the piece's position to the previous grid location
+    //             piece.style.top = previousPosition.top + 'px';
+    //             piece.style.left = previousPosition.left + 'px';
+
+    //             Update the matrix to reflect the move reversal
+    //             app.matrix[lastMove.toi][lastMove.toj].id = "";  Clear destination cell
+    //             app.matrix[lastMove.fromi][lastMove.fromj].id = lastMove.id;  Restore initial cell
+    //         }
+    //     } else {
+    //         alert("No moves to undo!");
+    //     }
+    // }
+    function surrender() {
+        const currentUserName = document.getElementById('userInput').value;
+
+        if (!app.canUserMove()) {
+            return; // Prevent move if user is not allowed
+        }
+        const username = document.getElementById('userInput').value || 'Guest';
+
+        // Show the surrender message
+        alert(`${username} has surrendered!`);
+
+        // Call the resetGame function to reset the board
+        // resetGame();
+        app.matrix = [];
+        app.moveHistory = [];
+
+        // Reset chess nodes and reload pieces
+        app.chessNode = [];
+        app.getChessNode();
+
+        // Hide all pieces initially (optional, adjust selector as needed)
+        const pieces = document.querySelectorAll('.chessnode');
+        pieces.forEach(piece => {
+            piece.style.display = 'none';
+        });
+
+        console.log("Game has been reset.");
+    }
+    // function undoMove(){
+    //     app.undoMove();
+    // }
+
+    // function surrender() {
+    //     app.surrender();
+    // }
+
     var matrix = [];
     var app = new Vue({
         el: '#app',
@@ -190,9 +334,13 @@
             top: 0,
             left: 0,
             moveHistory: []
-
+            // blackturn: false
         },
         methods: {
+            canUserMove() {
+                // Check if the current user's username is among the first two in userList
+                return userList.length > 0 && userList.slice(0, 2).includes(document.getElementById('userInput').value);
+            },
             getChessNode() {
                 axios({
                     url: '/api/chess/loadChessBoard',
@@ -219,11 +367,73 @@
                 }
                 return null;
             },
+            undoMove() {
+                const currentUserName = document.getElementById('userInput').value;
+
+                if (!this.canUserMove()) {
+                    return; // Prevent move if the user is not allowed
+                }
+
+                if (this.moveHistory.length > 0) {
+                    const lastMove = this.moveHistory.pop();
+                    const piece = document.getElementById(lastMove.id);
+
+                    if (piece) {
+                        const previousPosition = this.matrix[lastMove.fromi][lastMove.fromj];
+                    
+                        piece.style.top = previousPosition.top + 'px';
+                        piece.style.left = previousPosition.left + 'px';
+
+                        this.matrix[lastMove.toi][lastMove.toj].id = "";  // Clear destination cell
+                        this.matrix[lastMove.fromi][lastMove.fromj].id = lastMove.id;  // Restore initial cell
+                    }
+                } else {
+                    alert("No moves to undo!");
+                }
+            },
+            surrender() {
+                const currentUserName = document.getElementById('userInput').value;
+
+                if (!this.canUserMove()) {
+                    return; // Prevent move if the user is not allowed
+                }
+
+                const username = currentUserName || 'Guest';
+                alert(`${username} has surrendered!`);
+
+                // Reset the game board and other properties
+                this.matrix = [];
+                this.moveHistory = [];
+                this.chessNode = [];
+
+                // Reload the chess board
+                this.getChessNode();
+
+                // Hide all chess pieces initially
+                const pieces = document.querySelectorAll('.chessnode');
+                pieces.forEach(piece => {
+                    piece.style.display = 'none';
+                });
+                this.resetGame();
+
+                console.log("Game has been reset.");
+            },
             dragStart(event) {
+                const currentUserName = document.getElementById('userInput').value;
+
+                if (!this.canUserMove()) {
+                    alert("Only the first two users in the room can move pieces.");
+                    return; // Prevent move if user is not allowed
+                }
                 this.top = event.clientY;
                 this.left = event.clientX;
             },
             dragEnd(event) {
+                const currentUserName = document.getElementById('userInput').value;
+
+                if (!this.canUserMove()) {
+                    return; // Prevent move if user is not allowed
+                }
                 var id = event.currentTarget.id;
                 var moveX = event.clientX - this.left;
                 var moveY = event.clientY - this.top;
@@ -238,6 +448,7 @@
 
                 if (id && nodeStart && nodeEnd && (nodeStart.i !== nodeEnd.i || nodeStart.j !== nodeEnd.j)) {
                     // Push the move to the moveHistory stack
+                    // this.
                     moveHistory.push({
                         id: id,
                         fromi: nodeStart.i,
@@ -245,7 +456,7 @@
                         toi: nodeEnd.i,
                         toj: nodeEnd.j
                     });
-
+                    console.log("Current moveHistory:", this.moveHistory);
                     // Move the piece visually
                     event.currentTarget.style.top = nodeEnd.top + 'px';
                     event.currentTarget.style.left = nodeEnd.left + 'px';
@@ -586,6 +797,7 @@
             },
             resetGame() {
                 matrix = [];
+                moveHistory: [];
                 this.chessNode = [];
 
                 this.getChessNode();
@@ -604,7 +816,15 @@
             this.getChessNode();
             let params = new URL(document.location.toString()).searchParams;
             let roomId = params.get("roomId");
+            var username = userList.length > 0 && userList.slice(0, 2).includes(document.getElementById('userInput').value);
             var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub?roomId=" + roomId).build();
+            connection.on("PlayerSurrendered", function (message) {
+                alert(`${message} has surrendered!`);
+                console.log(message);
+
+                this.surrender(); // Call surrender method
+                this.resetGame();
+            });
             connection.on("ReceiveChessMove", function (message) {
                 console.log(message);
                 var response = JSON.parse(message);

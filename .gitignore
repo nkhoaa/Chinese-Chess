@@ -1,1 +1,8 @@
 .vs/
+/CChess/bin/Debug/net6.0
+/CChess/bin/Debug
+/CChess/bin
+*.dll
+/CChess/obj/Debug
+/CChess/bin
+/CChess/obj
