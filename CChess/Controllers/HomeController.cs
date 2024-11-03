@@ -47,9 +47,20 @@ namespace CChess.Controllers
         {
             return View();
         }
-
+        
+        private static List<string> userList = new List<string>();
         public IActionResult JoinRoom(string roomId)
         {
+            // Retrieve the username from claims
+            string username = User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "Guest";
+
+            // Add the user to the list if not already present
+            if (!userList.Contains(username))
+            {
+                userList.Add(username);
+            }
+
+            ViewBag.UserList = userList;
             // Pass roomId to the ChessBoard view if needed
             ViewBag.RoomId = roomId;
             return View();
